@@ -1,0 +1,84 @@
+MinVertexCover version 0.01
+=======================
+
+NAME:
+
+MinVexCov 
+
+
+DESCRIPTION:
+
+
+This is a C++ implementation of the approximated solution to minimum vertex cover problem utilizing the list heuristic with static ordering based on vertex covering number (node degree). This solution has been proven to have O(sqrt(D)/2 + 3/2) approximation ratio for a decreasing node degree [1].
+
+
+
+SYNOPSIS:
+
+    #include<vector>
+    #include<string>
+    #include<MinVertexCover.hpp>
+
+    using namespace vex;
+
+    vector<string> parent {1,1,1,1,a,a,2,1,2,3,b,2,b,b,4,6,3,2,67,67};       //  any type/object is accepted (int, long, char,string...)
+    vector<string> child  {2,4,a,t,t,2,8,5,67,6,23,b,34,21,14,15,68,3,11,17}; //  any type/object is accepted (int, long, char,string...)
+
+/* Constructor */
+    VexCov<string,int> Vex(parent,child);
+    /*OR*/
+    VexCov<string,int> Vex;
+    VexCov<string,int> Vex.Make(parent,child);
+
+    vector<string> results = Vex.GetMinVexCov();    //  prints: 67,b,1,2,a,6,4,3,
+    Vex.GetError();                                 //  prints approximation ratio: 2 
+   
+/* Explicit destructor */
+
+   Vex.Purge();   
+
+
+
+
+
+
+CONSTRUCTION AND RUNTIME COMPLEXITY:
+
+     For a graph G= (V,E) where V is a set of vertices and E a set of edges:
+
+     Runtime:              O(|V|*|V|)
+     
+     Approximation ratio:  List/OPT <= sqrt(D)/2 + 3/2
+         
+              Where D is a maximum covering number (node degree).
+           
+
+
+ACKNOWLEDGMENTS:
+
+     
+1.  David Avis and Tomokazu Imamura, 2007., A list heuristic for vertex cover,Operations Research Letters 35(2):201-204.
+
+AUTHOR:
+
+Robert Bakaric <rbakaric@irb.hr>, <bakaric@evolbio.mpg.de>
+
+COPYRIGHT AND LICENSE:
+
+ * Copyright 2015 Robert Bakaric
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+
